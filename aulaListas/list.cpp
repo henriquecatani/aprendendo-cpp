@@ -77,14 +77,20 @@ namespace UPF{
 
  Usar o programa abaixo para validar a implementação
 */
-
-    int count(const std::string &s){
-        node *it = first;
-        while(it != nullptr)
-        {
-            if 
-        }
+    int count(const std:string &s){
+	   node *it = first;
+	   int cnt = 0;
+	   while(it != nullptr)
+	   {
+		   if (it->value == s)
+		   {
+			   cnt++;
+		   }
+		   it = i->next
+	   }
+	   return cnt;
     }
+
 /*
  Implementar na biblioteca "list.cpp" a seguinte função:
 
@@ -95,7 +101,18 @@ UPF::node* find(const std::string &s)
 
  Usar o programa abaixo para validar a implementação
 */
-
+    int count(const std::string &s){
+        node *it = first;
+        while(it != nullptr)
+        {
+            if (it->value == p)
+	    {
+		    return it;
+	    }
+	    it = it->next;
+        }
+	return nullptr;
+    }
 
 }
 
