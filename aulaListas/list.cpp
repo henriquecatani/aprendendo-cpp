@@ -65,54 +65,96 @@ namespace UPF{
             std::cout<< std::endl;
 
         }
-    };
 
-    /*
- Implementar na biblioteca "list.cpp" a seguinte função:
-
-    int count(const std::string &s)
-
- Ela recebe uma string s, conta e retorna a quantidade de nodos que contêm seu
- valor igual a s
-
- Usar o programa abaixo para validar a implementação
-*/
-    int count(const std:string &s){
-	   node *it = first;
-	   int cnt = 0;
-	   while(it != nullptr)
-	   {
-		   if (it->value == s)
-		   {
-			   cnt++;
-		   }
-		   it = i->next
-	   }
-	   return cnt;
-    }
-
-/*
- Implementar na biblioteca "list.cpp" a seguinte função:
-
-UPF::node* find(const std::string &s)
-    Ela recebe uma string s.
-    Retornar ponteiro para o primeiro nodo que contêm valor igual a s.
-    Retornar nullptr caso o valor não seja encontrado.
-
- Usar o programa abaixo para validar a implementação
-*/
-    int count(const std::string &s){
-        node *it = first;
-        while(it != nullptr)
+        int count(const std::string &s)
         {
-            if (it->value == p)
-	    {
-		    return it;
-	    }
-	    it = it->next;
+        /* 
+        int count(const std::string &s)
+        Recebe uma string s, conta e retorna a quantidade de nodos que contêm seu
+        valor igual a s
+        */
+            node *it = first;
+            int cnt = 0;
+            while(it != nullptr)
+            {
+            if (it->value == s)
+            {
+                cnt++;
+            }
+            it = it->next;
+            }
+            return cnt;
         }
-	return nullptr;
-    }
+
+        UPF::node* find(const std::string &s){
+
+        /*
+        UPF::node* find(const std::string &s)
+        Recebe uma string s.
+        Retornar ponteiro para o primeiro nodo que contêm valor igual a s.
+        Retornar nullptr caso o valor não seja encontrado.
+        */
+            node *it = first;
+            while(it != nullptr)
+            {
+                if (it->value == s)
+                {
+                    return it;
+                }
+                it = it->next;
+            }
+            return nullptr;
+        }
+        void erase(UPF::node *p)
+        {
+            if (p == first) // deletando o primeiro
+            {
+                first = first->next;
+                first->previous = nullptr;
+            }
+            if (p == last) // deletando o ultimo
+            {
+                last = last->previous;
+                last->next = nullptr;
+            }
+            if (p->previous != nullptr) // existe um anterior
+            {
+                p->previous->next = p->next; // o proximo do atual se torna o proximo do anterior, para excluir o atual
+            }
+            if (p->next != nullptr) // existe um proximo
+            {
+                p->next->previous = p->previous;
+            }
+            delete p;
+            num_nodes--;
+        }
+        void pop_front()
+        {
+            erase(first);
+        }
+        void pop_back()
+        {
+            erase(last);
+        }
+        void remove(const std::string &s)
+        {
+            /*
+            for (int i = 0; i < count(s); i++)
+            {
+                    erase(find(s));
+            } */
+            
+            node *it = first;
+            while(it != nullptr)
+            {
+                if (it->value == s)
+                {
+                    erase(it);
+                }
+                it = it->next;
+            }
+        }
+    };
 
 }
 
