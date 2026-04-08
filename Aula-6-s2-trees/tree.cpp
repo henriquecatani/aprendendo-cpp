@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <queue>
 
 namespace tree{
     //struct de cada nodo da árvore
@@ -56,5 +57,68 @@ namespace tree{
         return;
 
     }
+    void DFS_pre(node *root){ //Percorrer em pré ordem
+        if(!root) return;
+        std::cout << root->value << ' '; // Exibe o nodo
+        DFS_pre(root->left);// chama a função passando o nodo filho a esq
+        DFS_pre(root->right);// chama a função passando o nodo filho a dir
+    }
+
+    void DFS_in(node *root){ //Percorrer em in order
+        if(!root) return;
+        DFS_in(root->left);
+        std::cout<< root->value << ' ';
+        DFS_in(root->right);
+    }
+
+    void DFS_post(node *root){ //Percorrer em post order
+        if(!root) return;
+        DFS_post(root->left);
+        DFS_post(root->right);
+        std::cout << root->value << ' ';
+    }
+
+    void BSF(node *root){ //Percorre em largura
+        if(!root) return;
+        std::queue<node *> fila; // A fila guardará o endereço de memória dos nodos
+        fila.push(root);
+        while(!fila.empty()){
+            node *aux = fila.front();
+            std::cout << aux->value << ' ';
+            fila.pop();
+            if(aux->left) // se existe filho a esquerda
+                fila.push(aux->left);
+            if(aux->right) //Se existe filho a direita
+                fila.push(aux->right);        
+        }
+
+    }
+
+    //implementa a inserção em uma árvore binária de pesquisa
+    void BST_insert(node * &root, const std::string &val){
+        if(!root)
+            root = create_node(val);
+        else if(val < root->value)
+            BST_insert(root->left,val);
+        else
+            BST_insert(root->right,val);    
+    }
+
+    //TODO: Pesquisar um valor na BST
+    // se encontrar: Retornar o pointer para o node
+    // se ñ encontrar: retorna nullptr
+    node* BST_find(node * &root, const std::string &val){
+        if (!root || root->value == val)
+            return root;
+        if (root->value > val) {
+            return BST_find(root->left, val);
+        }
+        if (root->value > val) {
+            return BST_find(root->right, val);
+
+        }
+
+    }
+
 
 }
