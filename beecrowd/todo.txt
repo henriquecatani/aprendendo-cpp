@@ -1,0 +1,240 @@
+beecrowd | 1195 - Árvore Binária de Busca
+lvl 5
+Em computação, a árvores binária de busca ou árvore binária de pesquisa é uma estrutura baseada em nós (nodos), 
+onde todos os nós da subárvore esquerda possuem um valor numérico inferior ao nó raiz 
+e todos os nós da subárvore direita possuem um valor superior ao nó raiz (e assim sucessivamente). 
+O objetivo desta árvore é estruturar os dados de forma flexível, 
+permitindo a busca binária de um elemento qualquer da árvore.
+
+A grande vantagem das árvores de busca binária sobre estruturas de dados convencionais
+é que os algoritmos de ordenação (percurso infixo) e pesquisa que as utilizam são muito eficientes.
+
+Para este problema, você receberá vários conjuntos de números e a partir de cada um dos conjuntos,
+deverá construir uma árvore binária de busca. 
+Por exemplo, a sequência de valores: 8 3 10 14 6 4 13 7 1 resulta na seguinte árvore binária de busca:
+
+Entrada
+A entrada contém vários casos de teste. A primeira linha da entrada contém um inteiro C (C ≤ 1000),
+indicando o número de casos de teste que virão a seguir. Cada caso de teste é composto por 2 linhas.
+A primeira linha contém um inteiro N (1 ≤ N ≤ 500) que indica a quantidade de números que deve compor cada árvore 
+e a segunda linha contém N inteiros distintos e não negativos, separados por um espaço em branco.
+
+Saída
+Cada linha de entrada produz 3 linhas de saída. 
+Após construir a árvore binária de busca com os elementos de entrada, você deverá imprimir a mensagem "Case n:",
+onde n indica o número do caso de teste e fazer os três percursos da árvore: prefixo, infixo e posfixo,
+apresentando cada um deles em uma linha com uma mensagem correspondente conforme o exemplo abaixo, 
+separando cada um dos elementos por um espaço em branco.
+Obs: Não deve haver espaço em branco após o último item de cada linha 
+e há uma linha em branco após cada caso de teste, inclusive após o último.
+
+Exemplo de Entrada
+2
+3
+5 2 7
+9
+8 3 10 14 6 4 13 7 1 
+
+Exemplo de Saída
+Case 1:
+Pre.: 5 2 7
+In..: 2 5 7
+Post: 2 7 5
+
+Case 2:
+Pre.: 8 3 1 6 4 7 10 14 13
+In..: 1 3 4 6 7 8 10 13 14
+Post: 1 4 7 6 3 13 14 10 8
+
+----------------------------------------------------------------------
+beecrowd | 1201 - Operações em ABP II
+lvl 7
+Marcela nem terminou de fazer o programa anterior e o professor já lhe pediu um novo programa,
+com aprimoramentos sobre o programa anterior. Este novo programa é a implementação de
+uma Árvore Binária de Pesquisa (ou Busca) mas utilizando números inteiros agora,
+e que deve aceitar um comando extra (R) com relação ao programa anterior:
+
+    I n: Insere na árvore binária de pesquisa o elemento n.
+    INFIXA: lista os elementos já inseridos segundo o percurso infixo
+    PREFIXA: lista os elementos já inseridos segundo o percurso prefixo
+    POSFIXA: lista os elementos já inseridos segundo o percurso posfixo
+    P n: Pesquisa se o elemento n existe ou não na árvore.
+    R n: Remove o elemento n da árvore, caso ele exista.
+
+A qualquer momento pode-se inserir um elemento, 
+visitar os elementos previamente inseridos na ordem infixa, prefixa ou posfixa,
+procurar por um elemento na árvore para saber se o elemento existe ou não 
+ou ainda retirar um elemento.
+
+Nota: Se um elemento com duas sub-árvores (direita e esquerda) for removido,
+o antecessor (o elemento maior de sub-árvore esquerda, deve ocupar o seu lugar
+e ao tentar retirar um elemento que não existe, nenhuma mensagem deve ser apresentada.
+
+Entrada
+A entrada contém N operações utilizando números inteiros (1-106) sobre uma árvore binária de Busca,
+que inicialmente se encontra vazia. A primeira linha de entrada contém a inserção de algum elemento.
+As demais linhas de entrada podem conter quaiquer um dos comandos descritos acima, conforme exemplo abaixo.
+O final da entrada é determinado pelo final de arquivo (EOF).
+
+Saída
+Cada linha de entrada, com exceção das linhas que contém os comandos "I" ou "R", deve produzir uma linha de saída.
+A saída deve ser de acordo com o exemplo fornecido abaixo. 
+Não deve haver espaço em branco após o último caractere de cada linha, 
+caso contrário, sua submissão receberá Presentation Error.
+
+Exemplo de Entrada
+I 5
+I 2
+I 4
+I 1
+INFIXA
+PREFIXA
+POSFIXA
+P 3
+P 1
+INFIXA
+R 1
+INFIXA
+
+Exemplo de Saída
+1 2 4 5
+5 2 1 4
+1 4 2 5
+3 nao existe
+1 existe
+1 2 4 5
+2 4 5
+----------------------------------------------------------------------
+beecrowd | 1466 - Percurso em Árvore por Nível
+lvl 3
+
+Em uma árvore binária, o percurso por nível é um percurso denominado breadth first search (BFS) ou em português, busca em largura, a qual seria não-recursiva por natureza. Este percurso utiliza uma fila ao invés de pilha para armazenar os próximos 2 nodos que devem ser pesquisados (filho à esquerda e à direita). Esta é a razão pela qual você deve percorrer os nodos na ordem FIFO ao invés da ordem LIFO, obtendo desta forma a recursão.
+
+Portanto nossa tarefa aqui, após algumas operações de inserção sobre uma árvore binária de busca (pesquisa), é imprimir o percurso por nível sobre estes nodos. Por exemplo, uma entrada com a sequência de valores inteiros: 8 3 10 14 6 4 13 7 1 resultará na seguinte árvore:
+
+Com a saída de uma listagem por nível: 8 3 10 1 6 14 4 7 13.
+Entrada
+
+A entrada contém vários casos de teste. A primeira linha da entrada contém um inteiro C (C ≤ 1000), indicando o número de casos de teste que virão a seguir. Cada caso de teste é composto por 2 linhas. A primeira linha contém um inteiro N (1 ≤ N ≤ 500) que indica a quantidade de números que deve compor cada árvore e a segunda linha contém N inteiros distintos e não negativos, separados por um espaço em branco.
+Saída
+
+Para cada caso de teste de entrada você deverá imprimir a mensagem "Case n:", onde n indica o número do caso de teste seguido por uma linha contendo a listagem por nível dos nodos da árvore, conforme o exemplo abaixo.
+
+Obs: Não deve haver espaço em branco após o último item de cada linha e há uma linha em branco após cada caso de teste, inclusive após o último. A árvore resultante não terá nodos repetidos e também não terá mais do que 500 níveis.
+
+Sample Input 	
+2
+3
+5 2 7
+9
+8 3 10 14 6 4 13 7 1
+	
+Sample Output
+Case 1:
+5 2 7
+
+Case 2:
+8 3 10 1 6 14 4 7 13 
+----------------------------------------------------------------------
+beecrowd | 3484 - Turma Dividida
+Por Marcos José Brusso, UPF
+lvl 2
+
+Na escola Brincadeira e Sabedoria Total, a turma do 5º ano está sempre curiosa para a chegada do recreio, pois a professora incentiva seus alunos a aprenderem de maneiras divertidas e criativas. Numa tarde de sol, ela pensou em dividir os alunos em duas filas, com os mais altos na direita e os mais baixos na esquerda. Mas depois a professora percebeu que poderia ficar mais divertido se cada fila fosse sempre subdividida em duas com esta mesma lógica. Então ela definiu as seguintes regras para a brincadeira:
+
+    Início da Fila: A primeira criança a entrar na brincadeira fica na frente da fila.
+    Comparação de Altura: Cada nova criança que entrar na brincadeira compara sua altura com a da primeira criança:
+        Se for mais baixa, vai para a fila da esquerda.
+        Se for mais alta, vai para a fila da direita.
+    Subdivisões das Filas: Cada vez que uma criança chega na posição já ocupada por outra criança, ela compara sua altura com a altura daquele/a colega até encontrar uma posição livre:
+        Se for mais baixa, continua indo para a esquerda.
+        Se for mais alta, continua indo para a direita.
+        Ao encontrar uma posição livre, fica lá.
+
+Por exemplo, dada a seguinte sequência de crianças entrando na brincadeira, com a respectiva altura anotada em centímetros [130, 120, 140, 115, 125, 135, 145, 142, 138] a turma ficaria organizada com a seguinte disposição:
+
+Como a brincadeira se mostrou divertida, a professora solicitou que você escrevesse um programa que, dada a ordem de entrada dos alunos na brincadeira, exibe qual é a altura da menor criança que está em cada um dos níveis desta estrutura. Entende-se por nível a distância entre a que está no início da fila (a primeira a entrar) e cada uma das demais, considerando-se um espaçamento uniforme.
+Entrada
+
+A entrada contém um único caso de teste. A primeira linha contém um inteiro N (1 ≤ N < 250) indicando a quantidade de alunos na turma. A segunda linha vai conter N inteiros H1, H2, ...., Hn representando a altura em centímetros de cada um dos alunos (50 ≤ Hi ≤ 300). Considerar que não existem dois estudantes com exatamente a mesma altura em uma turma.
+
+Saída
+A saída é formada por uma sequência de linhas contendo dois inteiros separados por espaço: o número do nível (iniciando em 0) e a altura da menor criança que está posicionada naquele nível.
+
+Exemplos de Entrada / Saída
+
+9
+130 120 140 115 125 135 145 142 138
+	
+0 130
+1 120
+2 115
+3 138
+
+---
+3
+100 120 115
+
+0 100
+1 120
+2 115
+
+---
+3
+115 120 110
+
+0 115
+1 110
+----------------------------------------------------------------------
+ beecrowd | 1215 - Primeiro Dicionário de Andy
+lvl 6
+
+Autor Desconhecido
+Timelimit: 1
+
+Andy de apenas 8 anos tem um sonho - ele deseja criar o seu próprio dicionário. Isto não é uma tarefa fácil para ele, pois conhece poucas palavras. Bem, ao invés de pensar nas palavras que sabe, ele teve uma idéia brilhante. A partir do seu livro de histórias favorito, ele vai criar um dicionário com todas as palavras distintas que existem nele. Ordenando estas palavras em ordem alfabética, o trabalho estará feito. É claro, isso é uma tarefa que toma um certo tempo e portanto, a ajuda de um programador de computador como você é muito bemvinda.
+
+Você foi convidado a escrever um programa que liste todas as diferentes palavras que existem em um texto. Neste caso, uma palavra é definida como uma sequência de letras, maiúsculas ou minúsculas. Palavras com apenas uma letra também deverão ser consideradas. Portanto, seu programa deverá ser "CaSe InSeNsItIvE". Por exemplo, palavras como "Apple", "apple" ou "APPLE" deverão ser consideradas como a mesma palavra.
+
+Entrada
+A entrada contém no máximo 10000 linhas de texto, cada uma delas com no máximo 200 caracteres. O fim de entrada é determinado pelo EOF.
+
+Saída
+Você deve imprimir uma lista de diferentes palavras que aparecem no texto, uma palavra por linha. Todas as palavras devem ser impressas com letras minúsculas, em ordem alfabética. Deverá haver no máximo 5000 palavras distintas.
+
+Exemplo de Entrada 
+Ex(*$a#.mpl.e:
+
+Adventures in Disneyland
+
+Two blondes were going to Disneyland when they came to a fork in the road. The sign read: "Disneyland LEFT."
+
+So they went home.
+
+	
+Exemplo de Saída
+a
+adventures
+blondes
+came
+disneyland
+e
+ex
+fork
+going
+home
+in
+left
+mpl
+read
+road
+sign
+so
+the
+they
+to
+two
+went
+were
+when 
+----------------------------------------------------------------------
