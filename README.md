@@ -20,9 +20,6 @@ int main ()
 
     return 0;
 }
-else { 
-    ...
-}
 ```
   
 Adiciono espaços sempre que possível:
@@ -34,6 +31,9 @@ if (cond) {
 }
 else if ( condicao_muito_grande_nos_parenteses )
     codigo_de_uma_linha;
+else { 
+    ...
+}
 
 for ( int i = 0; i < n; i++ )
 {
