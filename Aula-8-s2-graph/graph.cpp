@@ -3,6 +3,9 @@
 #include <unordered_map>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <unordered_set>
+#include <iostream>
 
 namespace graph
 {
@@ -16,6 +19,7 @@ namespace graph
         };
 
         std::unordered_map<std::string,node> nodes;
+        std::unordered_set<node*> visited;
 
         public:
         void insert_node (const std::string& s) {
@@ -36,8 +40,10 @@ namespace graph
         bool insert_link ( const std::string& from, const std::string& to )
         {
             auto pfrom = find(from);
+            if (!pfrom) return false;
+
             auto pto = find(to);
-            if ( !pto || !pfrom ) return false; // origem ou destino n existe
+            if (!pto) return false;
 
             pfrom->links.push_back(pto);
             return true;
@@ -95,6 +101,55 @@ namespace graph
         size_t degree (std::string node) {
             return (find(node)) ? indegree(node) + outdegree(node) : 0;
         }
-    };
+
+        void remove_link (const std::string &from, const std::string &to) 
+        {
+            auto pfrom = find(from);
+            if (!pfrom) return;
+
+            auto pto = find(to);
+            if (!pto) return;
+
+            auto it = std::find( pfrom->links.begin(), pfrom->links.end(), pto );
+
+            if (it == pfrom->links.end()) return;
+
+            pfrom->links.erase(it);
+        }
+
+        void remove_node (const std::string &key)
+        {
+            auto target = find(key);
+            if (!target) return;
+
+            for ( auto &[k,nd] : nodes )
+                remove_link( nd.value, key);
+                // auto it = std::find( nd.links.begin(), nd.links.end(), target );
+
+                // if (it != nd.links.end()) // if node was found
+                //     nd.links.erase(it);
+            nodes.erase(key);
+        }
+
+        void DFS(node *p, int level = 0)
+        {
+            if (visited.count(p)) return;
+
+            std::cout << std::string(level, '\t')
+                      << p->value << std::endl;
+            visited.insert(p);
+
+            for (auto l : p->links) 
+                DFS(l, level + 1);
+        }
+
+        void DFS_from (const std::string& s)
+        {
+            auto p = find(s);
+            if (!p) return;
+            DFS(p);
+        }
+
+    }; // end of class
     
 }

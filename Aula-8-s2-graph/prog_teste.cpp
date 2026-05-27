@@ -36,6 +36,12 @@ int main(){
     cout << g.outdegree("C") << endl;
     cout << g.degree("C") << endl;
 
-    g.draw("teste");
+    g.draw("one");
+    g.remove_link("A", "B");
+    g.remove_node("D");
+
+    g.DFS_from("E");
+
+    g.draw("two");
     return 0;
 }
