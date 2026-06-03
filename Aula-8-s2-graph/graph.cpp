@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <unordered_set>
 #include <iostream>
+#include <queue>
 
 namespace graph
 {
@@ -147,7 +148,54 @@ namespace graph
         {
             auto p = find(s);
             if (!p) return;
+            visited.clear();
             DFS(p);
+        }
+        
+        std::vector<std::string> shortest_path(const std::string& from, const std::string& to)
+        {
+            std::vector<std::string> path;
+            auto pfrom = find(from);
+            if (!pfrom) return path;
+            
+            auto pto = find(to);
+            if (!pto) return path;
+
+            std::unordered_map<node*, node*> source;
+            std::queue<node*> q;
+            q.push(pfrom);
+            source[pfrom] = nullptr;
+            bool found = false;
+
+            while (!q.empty())
+            {
+                auto current = q.front();
+                q.pop();
+                if (current == pto) {
+                    found = true;
+                    break;
+                }
+
+                for (auto& vizi : current->links)
+                {
+                    if (!source.count(vizi)) {
+                        q.push(vizi);
+                        source[vizi] = current;
+                    }
+                }
+            }
+
+            if (found) {
+                auto p = pto;
+                while (p) {
+                    path.push_back(p->value);
+                    // path.insert ...
+                    p = source[p];
+                }
+                std::reverse(path.begin(), path.end());
+            }
+
+            return path;
         }
 
     }; // end of class
