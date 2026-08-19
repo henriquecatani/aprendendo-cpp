@@ -15,11 +15,9 @@ struct ModeloEsqui {
 
 bool compararModelos ( const ModeloEsqui& a, const ModeloEsqui& b ) 
 {
-    // maior cashback diario
     if (a.taxa_diaria != b.taxa_diaria)
         return a.taxa_diaria > b.taxa_diaria;
 
-    // maior duracao
     return a.duracao > b.duracao;
 }
 
@@ -44,13 +42,13 @@ int main ()
     int reembolso_total = 0;
     int dias_restantes = D;
 
-    for ( int i = 0; i < C; i++ ) 
+    for ( auto mod : modelos ) 
     {
-        while (dias_restantes >= modelos[i].duracao) 
+        while (dias_restantes >= mod.duracao) 
         {
-            modelos_escolhidos.push_back(modelos[i].nome);
-            reembolso_total += modelos[i].reembolso;
-            dias_restantes -= modelos[i].duracao;
+            modelos_escolhidos.push_back(mod.nome);
+            reembolso_total += mod.reembolso;
+            dias_restantes -= mod.duracao;
         }
     }
 
