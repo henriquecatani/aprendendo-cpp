@@ -37,4 +37,5 @@ int main (void)
         }
     }
 
+    cout << "Valor máximo: " << valorMax << endl;
 }
