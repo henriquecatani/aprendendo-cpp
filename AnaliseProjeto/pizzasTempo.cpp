@@ -1,37 +1,34 @@
 #define pii pair<int,int>
 #include <iostream>
-#include <list>
+#include <vector>
 
 using namespace std;
 
 int main () 
 {
     int n;
-    while (cin >> n) {
+    while (cin >> n && n) {
         int maxPizzas; cin >> maxPizzas;
 
-        list<pair<int, int>> pedidos;
+        vector<pair<int, int>> pedidos; // <tempo, pizzas>
         for (int i = 0; i < n; i++)
         {
-            double t, p; cin >> t >> p;
+            int t, p; cin >> t >> p;
             pedidos.push_back({t, p});
         }
 
-        pedidos.sort([] (const pii &a, const pii &b) {
-            return a.first > b.first;
-        });
-
-        int tempoTotal = 0;
-        int pizzasEntregues = 0;
+        vector<int> mochila(maxPizzas + 1, 0);
 
         for ( pii pedido : pedidos )
         {
-            if (pizzasEntregues + pedido.second < maxPizzas) {
-                pizzasEntregues += pedido.second;
-                tempoTotal += pedido.first;
+            for (int slot = maxPizzas; slot >= pedido.second; slot--)
+            {
+                mochila[slot] = max(mochila[slot], mochila[slot - pedido.second] + pedido.first);
             }
         }
 
-        cout << tempoTotal << " min.\n";
+        cout << mochila[maxPizzas] << " min.\n";
     }
+    
+    return 0;
 }
