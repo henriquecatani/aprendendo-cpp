@@ -36,7 +36,12 @@ int main ()
         modelos[i].taxa_diaria = static_cast<double>(modelos[i].reembolso) / modelos[i].duracao;
     }
 
-    sort( modelos.begin(), modelos.end(), compararModelos );
+    sort(modelos.begin(), modelos.end(), [](const ModeloEsqui &a, const ModeloEsqui &b) {
+        if (a.taxa_diaria != b.taxa_diaria)
+            return a.taxa_diaria > b.taxa_diaria;
+
+        return a.duracao > b.duracao; 
+    });
 
     vector<string> modelos_escolhidos;
     int reembolso_total = 0;

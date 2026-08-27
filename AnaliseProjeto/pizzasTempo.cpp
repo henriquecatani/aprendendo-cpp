@@ -10,7 +10,7 @@ int main ()
     while (cin >> n && n) {
         int maxPizzas; cin >> maxPizzas;
 
-        vector<pair<int, int>> pedidos; // <tempo, pizzas>
+        vector<pii> pedidos; // <tempo, pizzas>
         for (int i = 0; i < n; i++)
         {
             int t, p; cin >> t >> p;
