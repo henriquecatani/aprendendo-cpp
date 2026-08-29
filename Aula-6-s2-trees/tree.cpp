@@ -7,9 +7,9 @@
 namespace tree{
     //struct de cada nodo da árvore
     struct node{
-        std::string value; //INFORMAÇÃO
-        node *left;  //FILHO DA ESQUERDA
-        node *right; //FILHO DA DIREITA
+        std::string value;
+        node *left;
+        node *right;
     };
 
     node *create_node(const std::string &str_value){
@@ -22,19 +22,13 @@ namespace tree{
     }
 
     //Função que retornar o tamanho da árvor
-// A
-//      B De
-    //root é a raiz
     int height(node *root){
         if(root == nullptr){
             return -1;
         }
         return std::max(height(root->left),height(root->right))+1;
-
-                
     }
 
-    // henrique
     void show(node *root, int ident = 0)
     {
         int identl = ident;
@@ -53,15 +47,14 @@ namespace tree{
             std::cout << std::string(identr, ' ') << "r: ";
             show(root->right, identr);
         }
-
         return;
-
     }
+
     void DFS_pre(node *root){ //Percorrer em pré ordem
         if(!root) return;
-        std::cout << root->value << ' '; // Exibe o nodo
-        DFS_pre(root->left);// chama a função passando o nodo filho a esq
-        DFS_pre(root->right);// chama a função passando o nodo filho a dir
+        std::cout << root->value << ' ';
+        DFS_pre(root->left);
+        DFS_pre(root->right);
     }
 
     void DFS_in(node *root){ //Percorrer em in order
@@ -80,15 +73,15 @@ namespace tree{
 
     void BSF(node *root){ //Percorre em largura
         if(!root) return;
-        std::queue<node *> fila; // A fila guardará o endereço de memória dos nodos
+        std::queue<node *> fila;
         fila.push(root);
         while(!fila.empty()){
             node *aux = fila.front();
             std::cout << aux->value << ' ';
             fila.pop();
-            if(aux->left) // se existe filho a esquerda
+            if(aux->left)
                 fila.push(aux->left);
-            if(aux->right) //Se existe filho a direita
+            if(aux->right)
                 fila.push(aux->right);        
         }
 
@@ -104,7 +97,7 @@ namespace tree{
             BST_insert(root->right,val);    
     }
 
-    //TODO: Pesquisar um valor na BST
+    //Pesquisar um valor na BST
     // se encontrar: Retornar o pointer para o node
     // se ñ encontrar: retorna nullptr
     node* BST_find(node * &root, const std::string &val){

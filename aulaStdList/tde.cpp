@@ -19,7 +19,7 @@ struct compra
     string nome;
     int qtd;
     string marca;
-}
+};
 
 int main ()
 {
